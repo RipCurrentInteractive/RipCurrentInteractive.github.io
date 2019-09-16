@@ -51,6 +51,10 @@
 		</style>
 	</head>
 	<body>
+	
+	<div id="topmenu">
+			<button id="b_a">MENU</button>
+		</div>
 
 		<script type="module">
 			import * as THREE from './build/three.module.js';
@@ -100,6 +104,17 @@
 				composer.addPass( effect );
 				//
 				window.addEventListener( 'resize', onWindowResize, false );
+				createMenu();
+			}
+			var b_a = document.getElementById( "b_a" );
+			function createMenu()
+			{
+			
+				
+				b_a.addEventListener( 'click', function () {
+					
+					
+				} );
 			}
 			function onWindowResize() {
 				camera.aspect = window.innerWidth / window.innerHeight;
