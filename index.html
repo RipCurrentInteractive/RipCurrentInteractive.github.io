@@ -104,18 +104,15 @@
 				composer.addPass( effect );
 				//
 				window.addEventListener( 'resize', onWindowResize, false );
-				createMenu();
+				//createMenu();
 			}
 			var b_a = document.getElementById( "b_a" );
-			function createMenu()
-			{
-			
-				
-				b_a.addEventListener( 'click', function () {
+			b_a.addEventListener( 'click', function () {
 					
 					
 				} );
-			}
+				
+				
 			function onWindowResize() {
 				camera.aspect = window.innerWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
