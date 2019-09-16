@@ -67,11 +67,13 @@
 			import * as THREE from './build/three.module.js';
 			import { EffectComposer } from './jsm/postprocessing/EffectComposer.js';
 			import { RenderPass } from './jsm/postprocessing/RenderPass.js';
+			import { GlitchPass } from './jsm/postprocessing/GlitchPass.js';
 			import { ShaderPass } from './jsm/postprocessing/ShaderPass.js';
 			import { RGBShiftShader } from './jsm/shaders/RGBShiftShader.js';
 			import { DotScreenShader } from './jsm/shaders/DotScreenShader.js';
 			var camera, scene, renderer, composer;
 			var object, light;
+			var glitchPass;
 			init();
 			animate();
 			function init() {
@@ -109,6 +111,8 @@
 				var effect = new ShaderPass( RGBShiftShader );
 				effect.uniforms[ 'amount' ].value = 0.0015;
 				composer.addPass( effect );
+				glitchPass = new GlitchPass();
+				composer.addPass( glitchPass );
 				//
 				window.addEventListener( 'resize', onWindowResize, false );
 				//createMenu();
