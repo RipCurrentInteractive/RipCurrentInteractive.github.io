@@ -40,6 +40,29 @@
 				border: 1px solid red;
 				float: left;
 			}
+			
+			button {
+				color: rgb(255,255,255);
+				background: rgb(255,255,255,0.1);
+				border: 0px;
+				padding: 5px 10px;
+				margin: 2px;
+				font-size: 14px;
+				cursor: pointer;
+			}
+				button:hover {
+					background-color: rgba(0,255,255,0.5);
+				}
+				button:active {
+					color: #000000;
+					background-color: rgba(0,255,255,1);
+				}
+			.bond {
+				width: 5px;
+				height: 10px;
+				background: #eee;
+				display: block;
+			}
 		</style>
 	</head>
 	<body>
@@ -57,7 +80,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="info"><a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> webgl -  multiple canvases - grid</div>
+		
 
 		<script type="module">
 			import * as THREE from '../build/three.module.js';
@@ -179,6 +202,29 @@
 				renderer.setSize( 300, 200 );
 				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 			}
+			
+			var b_a = document.getElementById( "b_a" );
+			b_a.addEventListener( 'click', function () {
+					window.location = 'https://ripcurrentinteractive.github.io';
+					
+				} );
+				var b_b = document.getElementById( "b_b" );
+			b_b.addEventListener( 'click', function () {
+					window.location = 'https://ripcurrentinteractive.github.io/upcoming.html';
+					
+				} );
+				
+				var b_c = document.getElementById( "b_c" );
+			b_c.addEventListener( 'click', function () {
+					
+					
+				} );
+				
+				var b_d = document.getElementById( "b_d" );
+			b_d.addEventListener( 'click', function () {
+					
+					
+				} );
 			function onDocumentMouseMove( event ) {
 				mouseX = event.clientX - windowHalfX;
 				mouseY = event.clientY - windowHalfY;
