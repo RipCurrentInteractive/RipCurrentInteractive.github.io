@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 	<head>
-		<title>Upcoming Games</title>
+		<title>three.js css3d - youtube</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link type="text/css" rel="stylesheet" href="main.css">
@@ -72,11 +72,10 @@
 				height: 10px;
 				background: #eee;
 				display: block;
-			}
+				}
 		</style>
 	</head>
 	<body>
-	
 	<div id="topmenu">
 	<p style="color:white;font-size:25px;">WELCOME TO RIP CURRENT INTERACTIVE</p>
 			<button id="b_a">Home</button>
@@ -86,181 +85,75 @@
 			<br>
 			<br>
 			<br>
-			<div id="centerer">
-			<div id="centerer-cell">
-				<div id="container">
-					<div class="container-row">
-						<canvas id="canvas1"></canvas>
-						<canvas id="canvas2"></canvas>
-					</div>
-					<div class="container-row">
-						<canvas id="canvas3"></canvas>
-						<canvas id="canvas4"></canvas>
-					</div>
-				</div>
-			</div>
+			<div id="container"></div>
+		    <div id="blocker"></div>
+		
 		</div>
-		</div>
-		
-		
-		
-		
+	
+	
 		
 
 		<script type="module">
 			import * as THREE from '../build/three.module.js';
-			var views = [];
-			var scene, renderer;
-			var mouseX = 0, mouseY = 0;
-			var windowHalfX = window.innerWidth / 2;
-			var windowHalfY = window.innerHeight / 2;
+			import { TrackballControls } from './jsm/controls/TrackballControls.js';
+			import { CSS3DRenderer, CSS3DObject } from './jsm/renderers/CSS3DRenderer.js';
+			var camera, scene, renderer;
+			var controls;
+			var Element = function ( id, x, y, z, ry ) {
+				var div = document.createElement( 'div' );
+				div.style.width = '480px';
+				div.style.height = '360px';
+				div.style.backgroundColor = '#000';
+				var iframe = document.createElement( 'iframe' );
+				iframe.style.width = '480px';
+				iframe.style.height = '360px';
+				iframe.style.border = '0px';
+				iframe.src = [ 'https://www.youtube.com/embed/', id, '?rel=0' ].join( '' );
+				div.appendChild( iframe );
+				var object = new CSS3DObject( div );
+				object.position.set( x, y, z );
+				object.rotation.y = ry;
+				return object;
+			};
 			init();
 			animate();
-			//
-			function View( canvas, fullWidth, fullHeight, viewX, viewY, viewWidth, viewHeight ) {
-				canvas.width = viewWidth * window.devicePixelRatio;
-				canvas.height = viewHeight * window.devicePixelRatio;
-				var context = canvas.getContext( '2d' );
-				var camera = new THREE.PerspectiveCamera( 20, viewWidth / viewHeight, 1, 10000 );
-				camera.setViewOffset( fullWidth, fullHeight, viewX, viewY, viewWidth, viewHeight );
-				camera.position.z = 1800;
-				this.render = function () {
-					camera.position.x += ( mouseX - camera.position.x ) * 0.05;
-					camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
-					camera.lookAt( scene.position );
-					renderer.render( scene, camera );
-					context.drawImage( renderer.domElement, 0, 0 );
-				};
-			}
-			//
 			function init() {
-				var canvas1 = document.getElementById( 'canvas1' );
-				var canvas2 = document.getElementById( 'canvas2' );
-				var canvas3 = document.getElementById( 'canvas3' );
-				var canvas4 = document.getElementById( 'canvas4' );
-				var w = 300, h = 200;
-				var fullWidth = w * 2;
-				var fullHeight = h * 2;
-				views.push( new View( canvas1, fullWidth, fullHeight, w * 0, h * 0, w, h ) );
-				views.push( new View( canvas2, fullWidth, fullHeight, w * 1, h * 0, w, h ) );
-				views.push( new View( canvas3, fullWidth, fullHeight, w * 0, h * 1, w, h ) );
-				views.push( new View( canvas4, fullWidth, fullHeight, w * 1, h * 1, w, h ) );
-				//
+				var container = document.getElementById( 'container' );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 5000 );
+				camera.position.set( 500, 350, 750 );
 				scene = new THREE.Scene();
-				scene.background = new THREE.Color( 0xffffff );
-				var light = new THREE.DirectionalLight( 0xffffff );
-				light.position.set( 0, 0, 1 ).normalize();
-				scene.add( light );
-				// shadow
-				var canvas = document.createElement( 'canvas' );
-				canvas.width = 128;
-				canvas.height = 128;
-				var context = canvas.getContext( '2d' );
-				var gradient = context.createRadialGradient( canvas.width / 2, canvas.height / 2, 0, canvas.width / 2, canvas.height / 2, canvas.width / 2 );
-				gradient.addColorStop( 0.1, 'rgba(210,210,210,1)' );
-				gradient.addColorStop( 1, 'rgba(255,255,255,1)' );
-				context.fillStyle = gradient;
-				context.fillRect( 0, 0, canvas.width, canvas.height );
-				var shadowTexture = new THREE.CanvasTexture( canvas );
-				var shadowMaterial = new THREE.MeshBasicMaterial( { map: shadowTexture } );
-				var shadowGeo = new THREE.PlaneBufferGeometry( 300, 300, 1, 1 );
-				var shadowMesh;
-				shadowMesh = new THREE.Mesh( shadowGeo, shadowMaterial );
-				shadowMesh.position.y = - 250;
-				shadowMesh.rotation.x = - Math.PI / 2;
-				scene.add( shadowMesh );
-				shadowMesh = new THREE.Mesh( shadowGeo, shadowMaterial );
-				shadowMesh.position.x = - 400;
-				shadowMesh.position.y = - 250;
-				shadowMesh.rotation.x = - Math.PI / 2;
-				scene.add( shadowMesh );
-				shadowMesh = new THREE.Mesh( shadowGeo, shadowMaterial );
-				shadowMesh.position.x = 400;
-				shadowMesh.position.y = - 250;
-				shadowMesh.rotation.x = - Math.PI / 2;
-				scene.add( shadowMesh );
-				var radius = 200;
-				var geometry1 = new THREE.IcosahedronBufferGeometry( radius, 1 );
-				var count = geometry1.attributes.position.count;
-				geometry1.addAttribute( 'color', new THREE.BufferAttribute( new Float32Array( count * 3 ), 3 ) );
-				var geometry2 = geometry1.clone();
-				var geometry3 = geometry1.clone();
-				var color = new THREE.Color();
-				var positions1 = geometry1.attributes.position;
-				var positions2 = geometry2.attributes.position;
-				var positions3 = geometry3.attributes.position;
-				var colors1 = geometry1.attributes.color;
-				var colors2 = geometry2.attributes.color;
-				var colors3 = geometry3.attributes.color;
-				for ( var i = 0; i < count; i ++ ) {
-					color.setHSL( ( positions1.getY( i ) / radius + 1 ) / 2, 1.0, 0.5 );
-					colors1.setXYZ( i, color.r, color.g, color.b );
-					color.setHSL( 0, ( positions2.getY( i ) / radius + 1 ) / 2, 0.5 );
-					colors2.setXYZ( i, color.r, color.g, color.b );
-					color.setRGB( 1, 0.8 - ( positions3.getY( i ) / radius + 1 ) / 2, 0 );
-					colors3.setXYZ( i, color.r, color.g, color.b );
-				}
-				var material = new THREE.MeshPhongMaterial( {
-					color: 0xffffff,
-					flatShading: true,
-					vertexColors: THREE.VertexColors,
-					shininess: 0
+				renderer = new CSS3DRenderer();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+				var group = new THREE.Group();
+				group.add( new Element( 'xWzyorfeinM', 0, 0, 240, 0 ) );
+				group.add( new Element( 'SaQnq5b7tFw', 240, 0, 0, Math.PI / 2 ) );
+				group.add( new Element( '0DL9LxBOm5I', 0, 0, - 240, Math.PI ) );
+				group.add( new Element( 'xWzyorfeinM', - 240, 0, 0, - Math.PI / 2 ) );
+				scene.add( group );
+				controls = new TrackballControls( camera, renderer.domElement );
+				controls.rotateSpeed = 4;
+				window.addEventListener( 'resize', onWindowResize, false );
+				// Block iframe events when dragging camera
+				var blocker = document.getElementById( 'blocker' );
+				blocker.style.display = 'none';
+				controls.addEventListener( 'start', function () {
+					blocker.style.display = '';
 				} );
-				var wireframeMaterial = new THREE.MeshBasicMaterial( { color: 0x000000, wireframe: true, transparent: true } );
-				var mesh = new THREE.Mesh( geometry1, material );
-				var wireframe = new THREE.Mesh( geometry1, wireframeMaterial );
-				mesh.add( wireframe );
-				mesh.position.x = - 400;
-				mesh.rotation.x = - 1.87;
-				scene.add( mesh );
-				var mesh = new THREE.Mesh( geometry2, material );
-				var wireframe = new THREE.Mesh( geometry2, wireframeMaterial );
-				mesh.add( wireframe );
-				mesh.position.x = 400;
-				scene.add( mesh );
-				var mesh = new THREE.Mesh( geometry3, material );
-				var wireframe = new THREE.Mesh( geometry3, wireframeMaterial );
-				mesh.add( wireframe );
-				scene.add( mesh );
-				renderer = new THREE.WebGLRenderer( { antialias: true } );
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( 300, 200 );
-				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				controls.addEventListener( 'end', function () {
+					blocker.style.display = 'none';
+				} );
 			}
-			
-			var b_a = document.getElementById( "b_a" );
-			b_a.addEventListener( 'click', function () {
-					window.location = 'https://ripcurrentinteractive.github.io';
-					
-				} );
-				var b_b = document.getElementById( "b_b" );
-			b_b.addEventListener( 'click', function () {
-					window.location = 'https://ripcurrentinteractive.github.io/upcoming.html';
-					
-				} );
-				
-				var b_c = document.getElementById( "b_c" );
-			b_c.addEventListener( 'click', function () {
-					
-					
-				} );
-				
-				var b_d = document.getElementById( "b_d" );
-			b_d.addEventListener( 'click', function () {
-					
-					
-				} );
-			function onDocumentMouseMove( event ) {
-				mouseX = event.clientX - windowHalfX;
-				mouseY = event.clientY - windowHalfY;
+			function onWindowResize() {
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize( window.innerWidth, window.innerHeight );
 			}
 			function animate() {
-				for ( var i = 0; i < views.length; ++ i ) {
-					views[ i ].render();
-				}
 				requestAnimationFrame( animate );
+				controls.update();
+				renderer.render( scene, camera );
 			}
 		</script>
-
 	</body>
 </html>
