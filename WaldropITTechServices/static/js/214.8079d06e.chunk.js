@@ -16,5 +16,5 @@
   @media only screen and (max-width: 768px) {
     max-width: 100%;
   }
-`;var x=i(579);s.$;const h=(0,t.C)()((e=>{let{title:n,content:i,button:t,t:c}=e;return(0,x.jsx)(l,{children:(0,x.jsx)(a.q7,{direction:"up",triggerOnce:!0,children:(0,x.jsx)(r.A,{justify:"center",align:"middle",children:(0,x.jsx)(p,{children:(0,x.jsxs)(d.A,{lg:24,md:24,sm:24,xs:24,children:[(0,x.jsx)("h6",{children:c(n)}),(0,x.jsx)(m,{children:c(i)}),t&&(0,x.jsx)(s.$,{color:"primary",href:"https://ulm.aeroadmin.com/AeroAdmin.exe",children:" Download AeroAdmin "})]})})})})})}))}}]);
-//# sourceMappingURL=214.a78c2a89.chunk.js.map
+`;var x=i(579);const h=(0,t.C)()((e=>{let{title:n,content:i,button:t,t:c}=e;return(0,x.jsx)(l,{children:(0,x.jsx)(a.q7,{direction:"up",triggerOnce:!0,children:(0,x.jsx)(r.A,{justify:"center",align:"middle",children:(0,x.jsx)(p,{children:(0,x.jsxs)(d.A,{lg:24,md:24,sm:24,xs:24,children:[(0,x.jsx)("h6",{children:c(n)}),(0,x.jsx)(m,{children:c(i)}),t&&(0,x.jsx)(s.$,{color:"primary",href:"https://ulm.aeroadmin.com/AeroAdmin.exe",children:" Download AeroAdmin "})]})})})})})}))}}]);
+//# sourceMappingURL=214.8079d06e.chunk.js.map
