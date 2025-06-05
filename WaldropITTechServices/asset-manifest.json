@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/WaldropITTechServices/static/css/main.37ddbf14.css",
-    "main.js": "/WaldropITTechServices/static/js/main.da55a0ef.js",
-    "static/js/882.05e4dffa.chunk.js": "/WaldropITTechServices/static/js/882.05e4dffa.chunk.js",
+    "main.js": "/WaldropITTechServices/static/js/main.ed80ca87.js",
+    "static/js/882.e483ebd2.chunk.js": "/WaldropITTechServices/static/js/882.e483ebd2.chunk.js",
     "static/js/676.e748294b.chunk.js": "/WaldropITTechServices/static/js/676.e748294b.chunk.js",
     "static/js/416.9903c0ef.chunk.js": "/WaldropITTechServices/static/js/416.9903c0ef.chunk.js",
     "static/js/538.7502cfce.chunk.js": "/WaldropITTechServices/static/js/538.7502cfce.chunk.js",
@@ -12,8 +12,8 @@
     "static/js/545.363a01e3.chunk.js": "/WaldropITTechServices/static/js/545.363a01e3.chunk.js",
     "index.html": "/WaldropITTechServices/index.html",
     "main.37ddbf14.css.map": "/WaldropITTechServices/static/css/main.37ddbf14.css.map",
-    "main.da55a0ef.js.map": "/WaldropITTechServices/static/js/main.da55a0ef.js.map",
-    "882.05e4dffa.chunk.js.map": "/WaldropITTechServices/static/js/882.05e4dffa.chunk.js.map",
+    "main.ed80ca87.js.map": "/WaldropITTechServices/static/js/main.ed80ca87.js.map",
+    "882.e483ebd2.chunk.js.map": "/WaldropITTechServices/static/js/882.e483ebd2.chunk.js.map",
     "676.e748294b.chunk.js.map": "/WaldropITTechServices/static/js/676.e748294b.chunk.js.map",
     "416.9903c0ef.chunk.js.map": "/WaldropITTechServices/static/js/416.9903c0ef.chunk.js.map",
     "538.7502cfce.chunk.js.map": "/WaldropITTechServices/static/js/538.7502cfce.chunk.js.map",
@@ -24,6 +24,6 @@
   },
   "entrypoints": [
     "static/css/main.37ddbf14.css",
-    "static/js/main.da55a0ef.js"
+    "static/js/main.ed80ca87.js"
   ]
 }
