@@ -23,5 +23,5 @@
   @media screen and (max-width: 1240px) {
     display: none;
   }
-`;var r=n(579);const a=()=>{const[e,i]=(0,s.useState)(!1),n=(0,s.useCallback)((()=>{const n=window.scrollY;!e&&n>350?i(!0):n<=350&&i(!1)}),[e]);(0,s.useEffect)((()=>(window.addEventListener("scroll",n),()=>{window.removeEventListener("scroll",n)})),[n]);return(0,r.jsx)(o,{onClick:()=>{document.getElementById("intro").scrollIntoView({behavior:"smooth",block:"end",inline:"nearest"})},show:e,children:(0,r.jsx)(t.A,{src:"${process.env.PUBLIC_URL}/scroll-top.svg",width:"20px",height:"20px"})})}}}]);
-//# sourceMappingURL=538.75a59941.chunk.js.map
+`;var r=n(579);const a=()=>{const[e,i]=(0,s.useState)(!1),n=(0,s.useCallback)((()=>{const n=window.scrollY;!e&&n>350?i(!0):n<=350&&i(!1)}),[e]);(0,s.useEffect)((()=>(window.addEventListener("scroll",n),()=>{window.removeEventListener("scroll",n)})),[n]);return(0,r.jsx)(o,{onClick:()=>{document.getElementById("intro").scrollIntoView({behavior:"smooth",block:"end",inline:"nearest"})},show:e,children:(0,r.jsx)(t.A,{src:"/WaldropITTechServices/scroll-top.svg",width:"20px",height:"20px"})})}}}]);
+//# sourceMappingURL=538.18377266.chunk.js.map
